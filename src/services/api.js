@@ -1,5 +1,6 @@
 export async function getCategories() {
   // Implemente aqui
+  // Requisito 01
 }
 
 export async function getProductsFromCategoryAndQuery(/* categoryId, query */) {
