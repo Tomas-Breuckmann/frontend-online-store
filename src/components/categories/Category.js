@@ -10,6 +10,8 @@ import { getCategories } from '../../services/api';
 // salvar est resultado no state
 // renderizar os .names com os key = .id
 
+// TESTEEE!!
+
 class Category extends Component {
   constructor() {
     super();
