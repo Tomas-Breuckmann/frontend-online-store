@@ -22,7 +22,7 @@ class Category extends Component {
 
   componentDidMount = async () => {
     const categorias = await getCategories();
-    console.log(categorias);
+    // console.log(categorias);
     this.setState({ categories: categorias });
   }
 
