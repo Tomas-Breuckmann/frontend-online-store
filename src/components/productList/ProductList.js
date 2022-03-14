@@ -2,6 +2,7 @@
 // requisição da API
 import React from 'react';
 import { getProductFromQuery } from '../../services/api';
+import ProductCard from '../productCard/ProductCard';
 
 class Productlist extends React.Component {
   constructor() {
@@ -48,11 +49,12 @@ class Productlist extends React.Component {
         </button>
         {
           listProducts.map(({ id, title, thumbnail, price }) => (
-            <div data-testid="product" key={ id }>
-              <img src={ thumbnail } alt={ title } />
-              { title }
-              { price }
-            </div>
+            <ProductCard
+              key={ id }
+              title={ title }
+              thumbnail={ thumbnail }
+              price={ price }
+            />
           ))
         }
       </div>
