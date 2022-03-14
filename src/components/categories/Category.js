@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getCategories } from '../../services/api';
 
 // [ {
@@ -22,24 +23,34 @@ class Category extends Component {
 
   componentDidMount = async () => {
     const categorias = await getCategories();
-    // console.log(categorias);
     this.setState({ categories: categorias });
   }
 
   render() {
     const { categories } = this.state;
+    const { handleChangeCategory } = this.props;
     return (
-      <section>
-        {categories.map((element) => (
-          <li
-            data-testid="category"
-            key={ element.id }
-          >
+      <section className="categories">
+        { categories.map((element) => (
+          <label htmlFor="catg" key={ element.id }>
+            <input
+              data-testid="category"
+              type="radio"
+              name="catg"
+              id={ element.id }
+              value={ element.id }
+              onChange={ handleChangeCategory }
+            />
             {element.name}
-          </li>))}
+          </label>
+        ))}
       </section>
     );
   }
 }
+
+Category.propTypes = {
+  handleChangeCategory: PropTypes.func.isRequired,
+};
 
 export default Category;

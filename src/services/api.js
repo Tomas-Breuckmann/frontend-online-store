@@ -24,4 +24,8 @@ export async function getProductFromQuery(query) {
   return data;
 }
 
-// getCategories().then((data) => console.log(data));
+export async function getProductsFromCategory(category) {
+  const response = await fetch(`${ENDPOINT_ID}${category}`);
+  const data = await response.json();
+  return data;
+}

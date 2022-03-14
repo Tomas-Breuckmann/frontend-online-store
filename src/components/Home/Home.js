@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../categories/Category';
 import Productlist from '../productList/ProductList';
 
 class Home extends Component {
@@ -13,7 +12,6 @@ class Home extends Component {
           </p>
           <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
         </nav>
-        <Category />
         <Productlist />
       </div>
     );
