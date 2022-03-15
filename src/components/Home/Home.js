@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Category from '../categories/Category';
 import Productlist from '../productList/ProductList';
 
 class Home extends Component {
+  constructor() {
+    super();
+    const storage = JSON.parse(window.localStorage.getItem('cartProducts'));
+    if (storage === null) window.localStorage.setItem('cartProducts', '[]');
+    // window.localStorage.setItem('cartProducts', '[]');
+  }
+
   render() {
     return (
       <div>
@@ -13,7 +19,6 @@ class Home extends Component {
           </p>
           <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
         </nav>
-        <Category />
         <Productlist />
       </div>
     );

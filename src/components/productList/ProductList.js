@@ -1,15 +1,21 @@
 // receber o value do input via prop
 // requisição da API
 import React from 'react';
-import { getProductFromQuery } from '../../services/api';
+import { getProductFromQuery,
+  getProductsFromCategory,
+  getProductsFromCategoryAndQuery } from '../../services/api';
 import ProductCard from '../productCard/ProductCard';
+import Category from '../categories/Category';
+/* import * as script from './scripts'; */
 
-class Productlist extends React.Component {
+class ProductList extends React.Component {
   constructor() {
     super();
     this.state = {
-      searchProduct: '',
-      listProducts: [],
+      searchProduct: '', // nome que vem do imput button, produto a ser buscado
+      listProducts: [], // retorno diverso das api a ser renderizado
+      searchCategory: '', // o ID da categoria
+      cartProducts: JSON.parse(window.localStorage.getItem('cartProducts')),
     };
   }
 
@@ -20,16 +26,46 @@ class Productlist extends React.Component {
   }
 
   handleInputClick = async () => {
-    const { searchProduct } = this.state;
-    const retorno = await getProductFromQuery(searchProduct);
+    const { searchProduct, searchCategory } = this.state;
+    const retorno = searchCategory !== ''
+      ? await getProductsFromCategoryAndQuery(searchCategory, searchProduct)
+      : await getProductFromQuery(searchProduct);
     console.log(retorno);
     this.setState({
       listProducts: retorno.results,
     });
   }
 
+  handleChangeCategory = async ({ target: { value } }) => {
+    const retorno = await getProductsFromCategory(value);
+    this.setState({
+      searchCategory: value,
+      listProducts: retorno.results,
+    });
+  }
+
+  handleAddCart = (id, title, thumbnail, price) => {
+    const { cartProducts } = this.state;
+    const newItem = {
+      id,
+      title,
+      thumbnail,
+      price,
+      count: 1,
+    };
+    this.setState({
+      cartProducts: [...cartProducts, newItem],
+    }, this.addStorage);
+  }
+
+  addStorage = () => {
+    const { cartProducts } = this.state;
+    window.localStorage.setItem('cartProducts', JSON.stringify(cartProducts));
+  }
+
   render() {
     const { searchProduct, listProducts } = this.state;
+    console.log(listProducts);
     return (
       <div>
         <input
@@ -47,14 +83,28 @@ class Productlist extends React.Component {
         >
           Busca produto
         </button>
+
+        <Category
+          handleChangeCategory={ this.handleChangeCategory }
+        />
+
         {
           listProducts.map(({ id, title, thumbnail, price }) => (
-            <ProductCard
-              key={ id }
-              title={ title }
-              thumbnail={ thumbnail }
-              price={ price }
-            />
+            <div key={ id }>
+              <ProductCard
+                id={ id }
+                title={ title }
+                thumbnail={ thumbnail }
+                price={ price }
+              />
+              <button
+                type="button"
+                data-testid="product-add-to-cart"
+                onClick={ () => this.handleAddCart(id, title, thumbnail, price) }
+              >
+                Adicionar ao carrinho
+              </button>
+            </div>
           ))
         }
       </div>
@@ -62,4 +112,4 @@ class Productlist extends React.Component {
   }
 }
 
-export default Productlist;
+export default ProductList;
