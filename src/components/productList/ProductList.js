@@ -45,6 +45,7 @@ class ProductList extends React.Component {
 
   render() {
     const { searchProduct, listProducts } = this.state;
+    console.log(listProducts);
     return (
       <div>
         <input
@@ -71,6 +72,7 @@ class ProductList extends React.Component {
           listProducts.map(({ id, title, thumbnail, price }) => (
             <ProductCard
               key={ id }
+              id={ id }
               title={ title }
               thumbnail={ thumbnail }
               price={ price }
