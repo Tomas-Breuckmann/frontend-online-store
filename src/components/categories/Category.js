@@ -36,6 +36,17 @@ class Category extends Component {
             key={ element.id }
           >
             {element.name}
+            <label htmlFor=>
+              <input
+                data-testid="category"
+                key={ each.id }
+                type="radio"
+                name="catg"
+                id={ each.id }
+                value={ each.id }
+                onChange={ this.handleChangeCategory }
+              />
+            </label>
           </li>))}
       </section>
     );
