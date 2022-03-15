@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom';
 import Productlist from '../productList/ProductList';
 
 class Home extends Component {
+  constructor() {
+    super();
+    window.localStorage.setItem('cartProducts', '[]');
+  }
+
   render() {
     return (
       <div>
