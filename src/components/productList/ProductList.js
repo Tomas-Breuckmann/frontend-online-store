@@ -53,7 +53,6 @@ class ProductList extends React.Component {
       price,
       count: 1,
     };
-    // this.setState((prevState) => (cartProducts: [...prevState.cartProducts, newItem]));
     this.setState({
       cartProducts: [...cartProducts, newItem],
     }, this.addStorage);

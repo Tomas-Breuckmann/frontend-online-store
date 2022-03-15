@@ -10,15 +10,16 @@ class Cart extends Component {
 
   render() {
     const { cartProducts } = this.state;
+    console.log(cartProducts);
     return (
       <div>
         {
           cartProducts.length === 0 ? (
             <p data-testid="shopping-cart-empty-message">Seu carrinho está vazio</p>)
             : (
-              cartProducts.map(({ id, title, thumbnail, price, count }) => (
+              cartProducts.map(({ title, thumbnail, price, count }, index) => (
                 <div
-                  key={ id }
+                  key={ index }
                 >
                   <p data-testid="shopping-cart-product-name">{title}</p>
                   <p>{price}</p>

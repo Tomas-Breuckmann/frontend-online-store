@@ -5,7 +5,9 @@ import Productlist from '../productList/ProductList';
 class Home extends Component {
   constructor() {
     super();
-    window.localStorage.setItem('cartProducts', '[]');
+    const storage = JSON.parse(window.localStorage.getItem('cartProducts'));
+    if (storage === null) window.localStorage.setItem('cartProducts', '[]');
+    // window.localStorage.setItem('cartProducts', '[]');
   }
 
   render() {
