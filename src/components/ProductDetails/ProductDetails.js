@@ -34,6 +34,13 @@ class ProductDetails extends Component {
       );
   }
 }
-// https://api.mercadolibre.com/items/MLB711629638
+
+ProductDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      productId: PropTypes.string,
+    }),
+  }),
+}.isRequired;
 
 export default ProductDetails;
