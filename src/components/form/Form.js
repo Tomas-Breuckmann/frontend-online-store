@@ -13,7 +13,7 @@ export default class Form extends Component {
     }
 
     if (JSON.parse(window.localStorage.getItem('actualEvaluation')) === null) {
-      window.localStorage.setItem('actualvaluation', JSON.stringify({
+      window.localStorage.setItem('actualEvaluation', JSON.stringify({
         email: '',
         stars: 1,
         comment: '',
@@ -22,12 +22,11 @@ export default class Form extends Component {
 
     const initialStorage = JSON.parse(window.localStorage.getItem('actualEvaluation'));
     console.log(initialStorage);
-    const { email, stars, comment } = initialStorage;
     this.state = {
       evaluations: JSON.parse(window.localStorage.getItem('evaluations')),
-      email: initialStorage.email,
-      stars: JSON.parse(window.localStorage.getItem('actualEvaluation')).stars,
-      comment: JSON.parse(window.localStorage.getItem('actualEvaluation')).comment,
+      email: '',
+      stars: 1,
+      comment: '',
     };
   }
   // [...evaluations, newComment]
@@ -48,7 +47,7 @@ export default class Form extends Component {
     });
   }
 
-  handleClick = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
     // const { evaluations } = this.state;
     // console.log(evaluations);
@@ -81,7 +80,7 @@ export default class Form extends Component {
     const { id } = this.props;
     return (
       <div>
-        <form>
+        <form onSubmit={ this.handleSubmit }>
           <label htmlFor="email-input">
             Email
             <input
@@ -192,7 +191,7 @@ export default class Form extends Component {
           <button
             data-testid="submit-review-btn"
             type="submit"
-            onClick={ this.handleClick }
+            // onClick={ this.handleClick }
           >
             Avaliar
           </button>
