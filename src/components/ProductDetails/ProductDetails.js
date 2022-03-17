@@ -16,7 +16,7 @@ class ProductDetails extends Component {
     const { match: { params: { productId } } } = this.props;
     const data = await getProductsById(productId);
     this.setState({ product: data });
-    console.log(data);
+    // console.log(data);
   }
 
   handleAddCart = (id, title, thumbnail, price) => {
@@ -64,6 +64,12 @@ class ProductDetails extends Component {
           >
             Adicionar ao carrinho
           </button>
+          <div>
+            <h1>Avalie este produto</h1>
+          </div>
+            <form>
+              <input type="text"></input>
+            </form>
         </div>
       );
   }

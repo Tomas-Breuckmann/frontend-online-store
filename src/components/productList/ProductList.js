@@ -30,7 +30,7 @@ class ProductList extends React.Component {
     const retorno = searchCategory !== ''
       ? await getProductsFromCategoryAndQuery(searchCategory, searchProduct)
       : await getProductFromQuery(searchProduct);
-    console.log(retorno);
+    // console.log(retorno);
     this.setState({
       listProducts: retorno.results,
     });
@@ -65,7 +65,7 @@ class ProductList extends React.Component {
 
   render() {
     const { searchProduct, listProducts } = this.state;
-    console.log(listProducts);
+    // console.log(listProducts);
     return (
       <div>
         <input
