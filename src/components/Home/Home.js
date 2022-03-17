@@ -7,6 +7,9 @@ class Home extends Component {
     super();
     const storage = JSON.parse(window.localStorage.getItem('cartProducts'));
     if (storage === null) window.localStorage.setItem('cartProducts', '[]');
+    if (JSON.parse(window.localStorage.getItem('evaluations')) === null) {
+      window.localStorage.setItem('evaluations', '[]');
+    }
     // window.localStorage.setItem('cartProducts', '[]');
   }
 
