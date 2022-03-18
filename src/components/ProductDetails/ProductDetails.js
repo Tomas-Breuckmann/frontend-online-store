@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getProductsById } from '../../services/api';
+import Form from '../form/Form';
 
 class ProductDetails extends Component {
   constructor() {
     super();
+    if (JSON.parse(window.localStorage.getItem('evaluations')) === null) {
+      window.localStorage.setItem('evaluations', '[]');
+    }
     this.state = {
       product: '',
       cartProducts: JSON.parse(window.localStorage.getItem('cartProducts')),
@@ -16,7 +20,11 @@ class ProductDetails extends Component {
     const { match: { params: { productId } } } = this.props;
     const data = await getProductsById(productId);
     this.setState({ product: data });
+<<<<<<< HEAD
     // console.log(data);
+=======
+    /* console.log(data); */
+>>>>>>> 2c3b3639c1cff5c0f6daa9f269546dbc721528e5
   }
 
   handleAddCart = (id, title, thumbnail, price) => {
@@ -64,12 +72,16 @@ class ProductDetails extends Component {
           >
             Adicionar ao carrinho
           </button>
+<<<<<<< HEAD
           <div>
             <h1>Avalie este produto</h1>
           </div>
             <form>
               <input type="text"></input>
             </form>
+=======
+          <Form id={ productId } />
+>>>>>>> 2c3b3639c1cff5c0f6daa9f269546dbc721528e5
         </div>
       );
   }
