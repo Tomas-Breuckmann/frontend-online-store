@@ -12,16 +12,16 @@ export default class Form extends Component {
       window.localStorage.setItem('evaluations', '[]');
     }
 
-    if (JSON.parse(window.localStorage.getItem('actualEvaluation')) === null) {
-      window.localStorage.setItem('actualEvaluation', JSON.stringify({
-        email: '',
-        stars: 1,
-        comment: '',
-      }));
-    }
+    // if (JSON.parse(window.localStorage.getItem('actualEvaluation')) === null) {
+    //   window.localStorage.setItem('actualEvaluation', JSON.stringify({
+    //     email: '',
+    //     stars: 1,
+    //     comment: '',
+    //   }));
+    // }
 
-    const initialStorage = JSON.parse(window.localStorage.getItem('actualEvaluation'));
-    console.log(initialStorage);
+    // const initialStorage = JSON.parse(window.localStorage.getItem('actualEvaluation'));
+    // console.log(initialStorage);
     this.state = {
       evaluations: JSON.parse(window.localStorage.getItem('evaluations')),
       email: '',
