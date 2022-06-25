@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import Productlist from '../productList/ProductList';
+
+const Main = styled.div`
+  /* background-color: whitesmoke; */
+  width: 90%;
+  margin: 0 auto;
+  `;
+const Nav = styled.nav`
+  /* background-color: whitesmoke; */
+  display: flex;
+  justify-content: flex-end;
+  background-color: whitesmoke;
+  padding: 8px;
+`;
+
+const Cart = styled(Link)`
+  background-color: rgb(0, 0, 90);
+  padding: 4px 12px 4px 12px;
+  border-radius: 4px;
+  color: whitesmoke;
+`;
 
 class Home extends Component {
   constructor() {
@@ -15,15 +36,12 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <nav>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <Link to="/cart" data-testid="shopping-cart-button">Cart</Link>
-        </nav>
+      <Main>
+        <Nav>
+          <Cart to="/cart" data-testid="shopping-cart-button">Carrinho</Cart>
+        </Nav>
         <Productlist />
-      </div>
+      </Main>
     );
   }
 }

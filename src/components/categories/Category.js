@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { getCategories } from '../../services/api';
 
-// [ {
-//     "id": "MLB5672",
-//     "name": "Acessórios para Veículos"
-// } ],
-
-// pegar em uma constante o resultado da api
-// salvar est resultado no state
-// renderizar os .names com os key = .id
-
-// TESTEEE!!!!!!!!!!!!!!!
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  margin-right: 8px; 
+  padding: 4px;
+  background-color: whitesmoke;
+  min-width: 300px;
+`;
 
 class Category extends Component {
   constructor() {
@@ -30,7 +30,7 @@ class Category extends Component {
     const { categories } = this.state;
     const { handleChangeCategory } = this.props;
     return (
-      <section className="categories">
+      <Main>
         { categories.map((element) => (
           <label htmlFor="catg" key={ element.id }>
             <input
@@ -44,7 +44,7 @@ class Category extends Component {
             {element.name}
           </label>
         ))}
-      </section>
+      </Main>
     );
   }
 }
